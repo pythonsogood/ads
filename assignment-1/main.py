@@ -22,13 +22,16 @@ def task_6(n: int, *strs: tuple[str, ...]) -> str:
 		return f"{a}\n{b}" if len(b) > 0 else f"{a}"
 	return ""
 
-def task_7(n: int, _row: int=0) -> str:
-	if _row > n :
+def task_7(n: int, _stage: int=0) -> str:
+	if _stage > n :
 		return ""
 	res = ""
-	for i in (range(n) if _row % 2 == 0 else range(n-1, -1, -1)):
-		res += str(i + n * _row) + " "
-	return res + "\n" + task_7(n, _row+1) if _row+1 < n else res
+	if _stage % 4 == 0:
+		for i in range(n):
+			res += str(i + n * _stage) + " "
+	elif _stage % 2 == 0:
+
+	return res + "\n" + task_7(n, _stage+1) if _stage+1 < n else res
 
 
 if __name__ == "__main__":
