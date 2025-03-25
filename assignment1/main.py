@@ -69,7 +69,7 @@ def task_7(n: int, matrix: dict[str, int]=None, horizontal: int=0, vertical: int
 
 		return task_7(n, matrix, horizontal, vertical - 1, direction, top, bottom, right, left, step + 1)
 
-def task_8(n: int, k: int, arr: list[list[int]]=None) -> str:
+def task_8(n: int, k: int, arr: list[int]=None) -> str:
 	if arr is None:
 		arr = []
 
@@ -95,14 +95,14 @@ def task_10(n: int, _i: int=1) -> str:
 
 
 if __name__ == "__main__":
-	print(task_1(4))
-	print(task_2(4, [1, 2, 3, 4, 5]))
-	print(task_3(4))
-	print(task_4(3, 4))
-	print(task_5(3, 1, 2, 3))
-	print(task_6(3, "Abc", "bcdh", "abcdef"))
-	print(task_7(3))
-	print(task_8(n=2, k=3))
-	print(task_9("AB"))
+	# print(task_1(4))
+	# print(task_2(4, [1, 2, 3, 4, 5]))
+	# print(task_3(4))
+	# print(task_4(3, 4))
+	# print(task_5(3, 1, 2, 3))
+	# print(task_6(3, "Abc", "bcdh", "abcdef"))
+	# print(task_7(3))
+	# print(task_8(3, 3))
+	# print(task_9("AB"))
 	for i in range(10):
 		print(task_10(i))
