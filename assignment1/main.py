@@ -89,20 +89,20 @@ def task_10(n: int, _i: int=1) -> str:
 		return f"{n} is not a power of two"
 
 	if _i == n:
-		return f"{n} is power of two"
+		return f"{n} is a power of two"
 
 	return task_10(n, _i*2)
 
 
 if __name__ == "__main__":
-	# print(task_1(4))
-	# print(task_2(4, [1, 2, 3, 4, 5]))
-	# print(task_3(4))
-	# print(task_4(3, 4))
-	# print(task_5(3, 1, 2, 3))
-	# print(task_6(3, "Abc", "bcdh", "abcdef"))
-	# print(task_7(3))
-	# print(task_8(3, 3))
-	# print(task_9("AB"))
+	print(task_1(4))
+	print(task_2(4, [1, 2, 3, 4, 5]))
+	print(task_3(4))
+	print(task_4(3, 4))
+	print(task_5(3, 1, 2, 3))
+	print(task_6(3, "Abc", "bcdh", "abcdef"))
+	print(task_7(3))
+	print(task_8(3, 3))
+	print(task_9("AB"))
 	for i in range(10):
 		print(task_10(i))
