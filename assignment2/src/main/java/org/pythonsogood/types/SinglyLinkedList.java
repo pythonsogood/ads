@@ -1,13 +1,13 @@
 package org.pythonsogood.types;
 
-import java.util.Optional;
-
 public class SinglyLinkedList<T> {
 	private Node<T> start;
 
 	public SinglyLinkedList(T data) {
-		this.start = new Node(data);
+		this.start = new Node<T>(data);
 	}
+
+	public SinglyLinkedList() {}
 
 	public int size() {
 		int size = 0;
@@ -44,11 +44,11 @@ public class SinglyLinkedList<T> {
 		return current;
 	}
 
-	public Optional<Node<T>> getOptional(int index) {
+	public Node<T> getOptional(int index) {
 		try {
-			return Optional.of(get(index));
+			return get(index);
 		} catch (IndexOutOfBoundsException e) {
-			return Optional.empty();
+			return null;
 		}
 	}
 
@@ -88,15 +88,22 @@ public class SinglyLinkedList<T> {
 
 	public void push(T data) {
 		Node<T> current = this.start;
+		if (current == null) {
+			this.start = new Node<T>(data);
+			return;
+		}
 		while (current.next != null) {
 			current = current.next;
 		}
 
-		current.next = new Node(data);
+		current.next = new Node<T>(data);
 	}
 
 	public Node<T> pop() {
 		Node<T> current = this.start;
+		if (current == null) {
+			return null;
+		}
 		while (current.next.next != null) {
 			current = current.next;
 		}
@@ -108,6 +115,9 @@ public class SinglyLinkedList<T> {
 
 	public Node<T> shift() {
 		Node<T> node = this.start;
+		if (node == null) {
+			return null;
+		}
 		this.start = this.start.next;
 		return node;
 	}
@@ -129,16 +139,29 @@ public class SinglyLinkedList<T> {
 		return this.indexOf(data) != -1;
 	}
 
-	public Optional<T> find(T data) {
-		Optional<Node<T>> node = this.getOptional(this.indexOf(data));
-		if (node.isPresent()) {
-			return Optional.of(node.get().data);
+	public Node<T> find(T data) {
+		Node<T> node = this.getOptional(this.indexOf(data));
+		if (node == null) {
+			return null;
 		}
-		return Optional.empty();
+		return node;
 	}
 
 	public void clear() {
 		this.start = null;
+	}
+
+	public void reverse() {
+		Node<T> current = this.start;
+		Node<T> prev = null;
+		Node<T> next = null;
+		while (current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		this.start = prev;
 	}
 
 	public void print() {
