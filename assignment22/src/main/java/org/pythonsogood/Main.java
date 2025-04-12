@@ -44,18 +44,8 @@ public class Main {
 		return reversed;
 	}
 
-	public static void task_3() {
-		SizedBuffer<Integer> buffer = new SizedBuffer<Integer>(3);
-
-		buffer.add(1);
-		buffer.add(2);
-		buffer.add(3);
-
-		buffer.print();
-
-		buffer.add(4);
-
-		buffer.print();
+	public static SizedBuffer<Integer> task_3(int size) {
+		return new SizedBuffer<Integer>(size);
 	}
 
 	public static ArrayList<Integer> task_4(ArrayList<Integer> queue) {
@@ -122,7 +112,7 @@ public class Main {
 			sorted.set(i, sorted.get(0));
 			sorted.set(0, temp);
 
-			Main.task_6_heapify(list, i, 0);
+			Main.task_6_heapify(sorted, i, 0);
 		}
 
 		return sorted;
@@ -133,6 +123,7 @@ public class Main {
 
 		ArrayList<Integer> sorted = new ArrayList<Integer>(list);
 
+		// "Bubble" sort
         for (int i=0; i<n-1; i++) {
 			boolean swapped = false;
 
@@ -154,8 +145,25 @@ public class Main {
 	}
 
     public static void main(String[] args) {
-        // System.out.println(Main.task_2("Hello world!"));
-		// Main.task_3();
-        System.out.println(Main.task_6(new ArrayList<Integer>() {{ add(3); add(2); add(4); }}));
+        System.out.println(Main.task_1("{([])}"));
+        System.out.println(Main.task_1("([)]}"));
+
+        System.out.println(Main.task_2("Hello world,"));
+
+		SizedBuffer<Integer> buffer = Main.task_3(3);
+		buffer.add(1);
+		buffer.add(2);
+		buffer.add(3);
+		buffer.print();
+		buffer.add(4);
+		buffer.print();
+
+        System.out.println(Main.task_4(new ArrayList<Integer>() {{ add(1); add(2); add(3); add(4); add(5); }}));
+
+        System.out.println(Main.task_5(new ArrayList<Integer>() {{ add(2); add(3); add(1); add(5); add(4); }}, 2));
+
+        System.out.println(Main.task_6(new ArrayList<Integer>() {{ add(3); add(2); add(4); add(1); }}));
+
+        System.out.println(Main.task_7(new ArrayList<Integer>() {{ add(3); add(2); add(4); add(1); }}));
     }
 }
