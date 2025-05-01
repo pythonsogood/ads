@@ -71,11 +71,17 @@ public class Main {
 	}
 
     public static void main(String[] args) {
+		System.out.println("Task 1:");
 		task_1();
+		System.out.println("Task 2:");
 		task_2();
+		System.out.println("Task 3:");
 		task_3();
+		System.out.println("Task 4:");
 		task_4();
+		System.out.println("Task 5:");
 		task_5();
+		System.out.println("Task 6:");
 		task_6();
     }
 }
