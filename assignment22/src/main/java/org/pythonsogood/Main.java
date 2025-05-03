@@ -100,7 +100,16 @@ public class Main {
 			return list;
 		}
 
-		ArrayList<Integer> sorted = new ArrayList<Integer>(list);
+		ArrayList<Integer> sorted = new ArrayList<Integer>();
+
+		for (int i=0; i<list.size(); i++) {
+			int x = list.get(i);
+			if (!sorted.contains(x)) {
+				sorted.add(x);
+			}
+		}
+
+		n = sorted.size();
 
 		for (int i=n/2; i>-1; i--) {
 			Main.task_6_heapify(sorted, n, i);
@@ -114,6 +123,9 @@ public class Main {
 
 			Main.task_6_heapify(sorted, i, 0);
 		}
+
+		System.out.println(list);
+		System.out.println(String.format("HEAPSORT ARRAY SIZE: %d", n));
 
 		return sorted;
 	}
@@ -162,7 +174,7 @@ public class Main {
 
         System.out.println(Main.task_5(new ArrayList<Integer>() {{ add(2); add(3); add(1); add(5); add(4); }}, 2));
 
-        System.out.println(Main.task_6(new ArrayList<Integer>() {{ add(3); add(2); add(4); add(1); }}));
+        System.out.println(Main.task_6(new ArrayList<Integer>() {{ add(3); add(2); add(4); add(1); add(3); add(2); }}));
 
         System.out.println(Main.task_7(new ArrayList<Integer>() {{ add(3); add(2); add(4); add(1); }}));
     }

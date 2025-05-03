@@ -37,5 +37,17 @@ public class Main {
 
 		System.out.println("Getting middle element of Doubly Linked List");
 		System.out.println(list2.getMiddle().data);
+
+		System.out.println(list2.get(1).data);
+		System.out.println(list2.get(2).data);
+
+		System.out.println("PRINTING LIST");
+		list2.print();
+		int size = list2.size();
+		for (int i=0; i<size; i++) {
+			list2.remove(0);
+		}
+		System.out.println("PRINTING LIST");
+		list2.print();
     }
 }

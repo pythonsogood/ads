@@ -157,5 +157,9 @@ public class Main {
 		for (int i=0; i<=32; i++) {
 			System.out.println(Main.task_10(i));
 		}
+
+		for (int i=0; i<=32; i++) {
+			System.out.println(String.format("%d is power of three?: %s", i, extra.power_of_three(i)));
+		}
     }
 }

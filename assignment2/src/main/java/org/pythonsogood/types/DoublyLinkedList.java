@@ -83,7 +83,11 @@ public class DoublyLinkedList<T> {
 			}
 		}
 
-		current.next = current.next.next;
+		if (current.next != null) {
+			current.next = current.next.next;
+		} else {
+			this.start = null;
+		}
 	}
 
 	public void push(T data) {
