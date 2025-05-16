@@ -1,5 +1,6 @@
 package org.pythonsogood;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 public class Graph {
 	private final boolean isDirected;
-	private Map<Vertex, List<Vertex>> map = new HashMap<>();
+	private Map<Vertex, List<Pair<Vertex, Integer>>> map = new HashMap<>();
 
 	public Graph() {
 		this(false);
@@ -21,23 +22,23 @@ public class Graph {
 		this.map.put(v, new LinkedList<>());
 	}
 
-	public void addEdge(Edge edge) {
-		if (!this.hasVertex(edge.source)) {
-			this.addVertex(edge.source);
+	public void addEdge(Vertex source, Vertex dest, int weight) {
+		if (!this.hasVertex(source)) {
+			this.addVertex(source);
 		}
 
-		if (!this.hasVertex(edge.dest)) {
-			this.addVertex(edge.dest);
+		if (!this.hasVertex(dest)) {
+			this.addVertex(dest);
 		}
 
-		if (this.hasEdge(edge || source.equals(dest)) {
+		if (this.hasEdge(source, dest) || source.equals(dest)) {
 			return;
 		}
 
-		this.map.get(source).add(dest);
+		this.map.get(source).add(new Pair<Vertex, Integer>(dest, weight));
 
 		if (!this.isDirected) {
-			this.map.get(dest).add(source);
+			this.map.get(dest).add(new Pair<Vertex, Integer>(source, weight));
 		}
 	}
 
@@ -49,9 +50,35 @@ public class Graph {
 		return this.map.containsKey(v);
 	}
 
-	public boolean hasEdge(Edge edge) {
-		return this.map.get(edge.source).contains(edge.dest);
+	public boolean hasEdge(Vertex source, Vertex dest) {
+		for (Pair<Vertex, Integer> edge : this.map.get(source)) {
+			if (edge.a.equals(dest)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
-	public Iterable<Vertex> adj() {}
+	public Iterable<Vertex> adj() {
+		return this.map.keySet();
+	}
+
+	public Pair<Iterable<Vertex>, Integer> shortestPath(Vertex source, Vertex dest) {
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		String result = "";
+
+		for (Vertex source : this.map.keySet()) {
+			List<Pair<Vertex, Integer>> edges = this.map.get(source);
+			for (Pair<Vertex, Integer> edge : edges) {
+				result += String.format("%s -> %s (%d)\n", source, edge.a, edge.b);
+			}
+		}
+
+		return result;
+	}
 }
