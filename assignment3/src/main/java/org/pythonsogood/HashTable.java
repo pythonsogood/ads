@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HashTable<K, V> {
-	private List<Node<K, V>> chains;
-	private int M;
+	public List<Node<K, V>> chains;
+	public int M;
 	private int size = 0;
 
 	public HashTable() {
@@ -156,9 +156,9 @@ public class HashTable<K, V> {
 	}
 
 	public static class Node<K, V> {
-		private K key;
-		private V value;
-		private Node<K, V> next;
+		public K key;
+		public V value;
+		public Node<K, V> next;
 
 		public Node(K key, V value) {
 			this.key = key;

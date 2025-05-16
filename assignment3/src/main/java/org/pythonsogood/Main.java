@@ -12,13 +12,65 @@ public class Main {
 	}
 
 	public static void task_2() {
-		HashTable<Integer, Pair<String, Integer>> employees = new HashTable<>();
-		employees.put(1, new Pair<>("John", 50000));
-		employees.put(2, new Pair<>("Jane", 60000));
-		employees.put(3, new Pair<>("Bob", 70000));
-		employees.put(4, new Pair<>("Alice", 80000));
-		employees.put(5, new Pair<>("Mark", 90000));
+		HashTable<Integer, Pair<String, String>> employees = new HashTable<>();
+		employees.put(1, new Pair<>("John", "manager"));
+		employees.put(2, new Pair<>("Jane", "team lead"));
+		employees.put(3, new Pair<>("Bob", "dev"));
+		employees.put(6, new Pair<>("Bob 2", "dev"));
+		employees.put(4, new Pair<>("Alice", "designer"));
+		employees.put(5, new Pair<>("Mark", "HR"));
 		System.out.println(employees);
+
+		int managers = 0;
+		int teamleads = 0;
+		int devs = 0;
+		int designers = 0;
+		int hrs = 0;
+
+		for (int i=0; i<employees.M; i++) {
+			HashTable.Node<Integer, Pair<String, String>> chain = employees.chains.get(i);
+			if (chain == null) {
+				continue;
+			}
+
+			HashTable.Node<Integer, Pair<String, String>> current = chain;
+			while (current != null) {
+				switch (current.value.b) {
+					case "manager":
+						managers++;
+						break;
+
+					case "team lead":
+						teamleads++;
+						break;
+
+					case "dev":
+						devs++;
+						break;
+
+					case "designer":
+						designers++;
+						break;
+
+					case "HR":
+						hrs++;
+						break;
+
+					default:
+						break;
+				}
+
+				System.out.println(current.value);
+
+				current = current.next;
+			}
+		}
+
+		System.out.println(String.format("managers %d", managers));
+		System.out.println(String.format("teamleads %d", teamleads));
+		System.out.println(String.format("devs %d", devs));
+		System.out.println(String.format("designers %d", designers));
+		System.out.println(String.format("HRs %d", hrs));
 	}
 
 	public static void task_3() {
