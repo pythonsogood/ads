@@ -73,7 +73,7 @@ public class Graph {
 		Map<Vertex, Vertex> prev = new HashMap<>();
 		List<Vertex> unvisited = new ArrayList<>();
 
-		for (Vertex v : map.keySet()) {
+		for (Vertex v : this.map.keySet()) {
 			dist.put(v, Integer.MAX_VALUE);
 			prev.put(v, null);
 			unvisited.add(v);
@@ -96,7 +96,7 @@ public class Graph {
 
 			unvisited.remove(u);
 
-			for (Pair<Vertex, Integer> neighbor : map.get(u)) {
+			for (Pair<Vertex, Integer> neighbor : this.map.get(u)) {
 				Vertex v = neighbor.a;
 				int alt = dist.get(u) + neighbor.b;
 				if (alt < dist.get(v)) {

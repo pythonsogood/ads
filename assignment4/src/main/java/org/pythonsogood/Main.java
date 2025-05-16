@@ -77,7 +77,11 @@ public class Main {
 		graph.addEdge(edinburgh, perth, 100);
 		graph.addEdge(perth, dundee, 60);
 
-		System.out.println(graph.shortestPath(glasgow, dundee));
+		System.out.println("Scottish Road Network:");
+		System.out.println(graph);
+
+		Pair<Iterable<Vertex>, Integer> path = graph.shortestPath(edinburgh, dundee);
+		System.out.println(String.format("Shortest path from Edinburgh to Dundee: %s (%d)", path.a, path.b));
 	}
 
 	public static void main(String[] args) {
