@@ -1,5 +1,7 @@
 package org.pythonsogood;
 
+import java.util.List;
+
 public class Main {
 	public static void task_1() {
 		Graph cityMap = new Graph(false);
@@ -18,8 +20,16 @@ public class Main {
 		System.out.println("City Transport Network:");
 		System.out.println(cityMap);
 
-		Pair<Iterable<Vertex>, Integer> result = cityMap.shortestPath(a, e);
+		Pair<List<Vertex>, Integer> result = cityMap.shortestPath(a, e);
 		System.out.println(String.format("Shortest path from A to E: %s (%d)", result.a, result.b));
+
+		for (int i=0; i<result.a.size()-1; i++) {
+			Vertex v = result.a.get(i);
+			Vertex u = result.a.get(i+1);
+			System.out.println(String.format("%s -> %s (%d)", v, u, cityMap.getEdgeLength(v, u)));
+		}
+
+		System.out.println(String.format("Edges: %d", cityMap.getEdgesCount()));
 	}
 
 	public static void task_2() {
@@ -37,7 +47,7 @@ public class Main {
 		System.out.println("Delivery Route Map:");
 		System.out.println(deliveryMap);
 
-		Pair<Iterable<Vertex>, Integer> deliveryPath = deliveryMap.shortestPath(restaurant, customer1);
+		Pair<List<Vertex>, Integer> deliveryPath = deliveryMap.shortestPath(restaurant, customer1);
 		System.out.println(String.format("Optimal delivery path to Customer1: %s (%d)", deliveryPath.a, deliveryPath.b));
 	}
 
@@ -58,18 +68,18 @@ public class Main {
 		System.out.println("Airline Flight Routes:");
 		System.out.println(airlineRoutes);
 
-		Pair<Iterable<Vertex>, Integer> flightPath = airlineRoutes.shortestPath(ny, tokyo);
+		Pair<List<Vertex>, Integer> flightPath = airlineRoutes.shortestPath(ny, tokyo);
 		System.out.println(String.format("Fastest flight path from New York to Tokyo: %s (%d)", flightPath.a, flightPath.b));
 	}
 
 	public static void task_4() {
+		Graph graph = new Graph();
 		Vertex glasgow = new Vertex("Glasgow");
 		Vertex stirling = new Vertex("Stirling");
 		Vertex edinburgh = new Vertex("Edinburgh");
 		Vertex perth = new Vertex("Perth");
 		Vertex dundee = new Vertex("Dundee");
 
-		Graph graph = new Graph();
 		graph.addEdge(glasgow, stirling, 50);
 		graph.addEdge(glasgow, edinburgh, 70);
 		graph.addEdge(stirling, perth, 40);
@@ -80,7 +90,7 @@ public class Main {
 		System.out.println("Scottish Road Network:");
 		System.out.println(graph);
 
-		Pair<Iterable<Vertex>, Integer> path = graph.shortestPath(edinburgh, dundee);
+		Pair<List<Vertex>, Integer> path = graph.shortestPath(edinburgh, dundee);
 		System.out.println(String.format("Shortest path from Edinburgh to Dundee: %s (%d)", path.a, path.b));
 	}
 

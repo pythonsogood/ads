@@ -9,6 +9,7 @@ import java.util.Map;
 public class Graph {
 	private final boolean isDirected;
 	private Map<Vertex, List<Pair<Vertex, Integer>>> map = new HashMap<>();
+	private int edges = 0;
 
 	public Graph() {
 		this(false);
@@ -16,6 +17,20 @@ public class Graph {
 
 	public Graph(boolean isDirected) {
 		this.isDirected = isDirected;
+	}
+
+	public Map<Vertex, List<Pair<Vertex, Integer>>> getMap() {
+		return this.map;
+	}
+
+	public int getEdgeLength(Vertex source, Vertex dest) {
+		for (Pair<Vertex, Integer> pair : this.map.get(source)) {
+			if (pair.a == dest) {
+				return pair.b;
+			}
+		}
+
+		return -1;
 	}
 
 	public void addVertex(Vertex v) {
@@ -40,6 +55,8 @@ public class Graph {
 		if (!this.isDirected) {
 			this.map.get(dest).add(new Pair<Vertex, Integer>(source, weight));
 		}
+
+		this.edges++;
 	}
 
 	public void addEdge(Vertex source, Vertex dest) {
@@ -48,6 +65,10 @@ public class Graph {
 
 	public int getVertexCount() {
 		return this.map.size();
+	}
+
+	public int getEdgesCount() {
+		return this.edges;
 	}
 
 	public boolean hasVertex(Vertex v) {
@@ -68,7 +89,7 @@ public class Graph {
 		return this.map.keySet();
 	}
 
-	public Pair<Iterable<Vertex>, Integer> shortestPath(Vertex source, Vertex dest) {
+	public Pair<List<Vertex>, Integer> shortestPath(Vertex source, Vertex dest) {
 		Map<Vertex, Integer> dist = new HashMap<>();
 		Map<Vertex, Vertex> prev = new HashMap<>();
 		List<Vertex> unvisited = new ArrayList<>();
